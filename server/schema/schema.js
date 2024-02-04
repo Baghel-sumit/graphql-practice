@@ -1,5 +1,6 @@
 const graphql = require('graphql');
 const books = require('../Data/books.json');
+const authors = require('../Data/authors.json');
 const _ = require('lodash');
 
 const BookType = new graphql.GraphQLObjectType({
@@ -37,11 +38,11 @@ const RootQuery = new graphql.GraphQLObjectType({
     author: {
       type: AuthorType,
       args: {
-        name: { type: graphql.GraphQLString }
+        id: { type: graphql.GraphQLID }
       },
       resolve: (parent, args) => {
 
-        return _.find(books, { author: args.name });
+        return _.find(authors, { id: args.id });
       }
     }
   }
