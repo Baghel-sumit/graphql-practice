@@ -9,6 +9,13 @@ const BookType = new graphql.GraphQLObjectType({
     id: { type: graphql.GraphQLID },
     title: { type: graphql.GraphQLString },
     categories: { type: graphql.GraphQLString },
+    author: {
+      type: AuthorType,
+      resolve: (parent, args) => {
+
+        return _.find(authors, { id: parent.authorId });
+      }
+    }
   })
 });
 
