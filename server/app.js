@@ -3,9 +3,11 @@ const { createHandler } = require('graphql-http/lib/use/express');
 const expressPlayground = require('graphql-playground-middleware-express').default;
 const graphQLSchema = require('./schema/schema');
 const mongoose = require('mongoose');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
+app.use(cors());
 app.use('/graphql', createHandler({
   schema: graphQLSchema,
 }));
