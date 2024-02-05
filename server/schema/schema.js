@@ -85,8 +85,8 @@ const Mutations = new graphql.GraphQLObjectType({
     addAuthor : {
       type: AuthorType,
       args: {
-        name: { type: graphql.GraphQLString },
-        age: { type: graphql.GraphQLString },
+        name: { type: new graphql.GraphQLNonNull(graphql.GraphQLString) },
+        age: { type: new graphql.GraphQLNonNull(graphql.GraphQLString) },
       },
       resolve: async (parent, args) => {
         let author = new Authors({
@@ -100,9 +100,9 @@ const Mutations = new graphql.GraphQLObjectType({
     addBook : {
       type: BookType,
       args: {
-        title: { type: graphql.GraphQLString },
-        categories: { type: graphql.GraphQLString },
-        authorId: { type: graphql.GraphQLID }
+        title: { type: new graphql.GraphQLNonNull(graphql.GraphQLString) },
+        categories: { type: new graphql.GraphQLNonNull(graphql.GraphQLString) },
+        authorId: { type: new graphql.GraphQLNonNull(graphql.GraphQLID) }
       },
       resolve: async (parent, args) => {
         let book = new Books({
